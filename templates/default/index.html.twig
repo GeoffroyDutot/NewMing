@@ -6,7 +6,7 @@
     <div class="gamecard-container">
         {% for game in games %}
             <div class="game-card">
-                <img src="{{  game.url }}" alt="{{ game.title }}"/>
+                <img class="game-img" src="{{  game.url }}" alt="{{ game.title }}"/>
                 <div class="container">
                     <p class="game-price">{{ game.price }}</p>
                     <div class="game-infos">

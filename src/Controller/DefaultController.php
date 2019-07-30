@@ -12,32 +12,34 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $gta = [
-            "title" => "GTA 6",
-            "releasedate" => "27 septembre 2019",
-            "url" => "https://s1.gaming-cdn.com/images/products/840/271x377/cyberpunk-2077-cover.jpg",
-            "price" => "10 $"
-        ];
+       $games = [];
 
-        $minecraft = [
-            "title" => "minecraft",
-            "releasedate" => "30 septembre 2019",
-            "url" => "https://s3.gaming-cdn.com/images/products/2669/271x377/doom-eternal-cover.jpg",
-            "price" => "20 $"
-        ];
+       $client = \Symfony\Component\Panther\Client::createChromeClient();
+       $crawler = $client->request('GET', 'https://www.instant-gaming.com/fr/rechercher/?preorder=1&sort_by=avail_date_asc');
+       $fullPageHtml = $crawler->html();
+       $countitem = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div')->count();
+       for($i=1; $i<$countitem+1; $i++){
+           $releasedate = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > div.name')->text();
+           $title = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('alt');
+           $url = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('src');
+           $url = str_replace('157x218', '271x377', $url);
+           $price = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > div > div.price')->text();
 
-        $factorio = [
-            "title" => "factorio",
-            "releasedate" => "31 septembre 2019",
-            "url" => "https://s2.gaming-cdn.com/images/products/709/271x377/borderlands-3-cover.jpg",
-            "price" => "100 $"
-        ];
+           $game = [
+               "title" => $title,
+               "releasedate" => $releasedate,
+               "url" => $url,
+               "price" => $price
+           ];
 
-        $games = [$gta, $minecraft, $factorio];
+           $games[] = $game;
+       }
+
+        $client->quit();
 
         return $this->render('default/index.html.twig', [
             "games" => $games
             ]
-            );
+        );
     }
 }

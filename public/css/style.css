@@ -26,6 +26,10 @@ body {
     display: flex;
 }
 
+.game-img{
+    width: 100%;
+}
+
 .game-title{
     margin: 3px;
 }
@@ -35,6 +39,7 @@ body {
 }
 
 .game-price{
+    display: none;
     position: absolute;
     color: #ff5400;
     font-size: 20px;
@@ -45,12 +50,22 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.game-card:hover .game-price {
+    display: block;
+}
+
+.game-card:hover .game-infos {
+    display: none;
+}
+
 /* Add some padding inside the card container */
 .container {
+    min-height: 80px;
     display: flex;
     align-items: center;
     padding: 2px 16px;
     color: white;
+    justify-content: center;
 }
 
 .game-infos{
