@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewMing{% endblock %}
+
+{% block body %}
+    <div class="gamecard-container">
+        {% for game in games %}
+            <div class="game-card">
+                <img src="{{  game.url }}" alt="{{ game.title }}"/>
+                <div class="container">
+                    <p class="game-price">{{ game.price }}</p>
+                    <div class="game-infos">
+                        <p class="game-release-date">{{ game.releasedate }}</p>
+                        <h3 class="game-title">{{ game.title|upper }}</h3>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

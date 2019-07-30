@@ -1,0 +1,59 @@
+html{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+body, p, h3 {
+    margin: 0;
+}
+
+body {
+    background-color: #444444;
+    height: 100%;
+}
+.game-card {
+    margin: 50px;
+    /* background-color: #2d2d2d; */
+    height: 10%;
+    width: 255px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.gamecard-container{
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.game-title{
+    margin: 3px;
+}
+
+.game-release-date{
+    font-style: italic;
+}
+
+.game-price{
+    position: absolute;
+    color: #ff5400;
+    font-size: 20px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.game-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    display: flex;
+    align-items: center;
+    padding: 2px 16px;
+    color: white;
+}
+
+.game-infos{
+    width: 100%;
+    text-align: center;
+}
