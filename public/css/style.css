@@ -10,6 +10,53 @@ body {
     background-color: #444444;
     height: 100%;
 }
+
+.social-network{
+    display:flex;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+.nav{
+    margin-left: 45%;
+    display: flex;
+}
+
+.games-button{
+    font-size: 20px;
+    border: none;
+    background-color: #ff5400;
+    color:white;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.netflix-button{
+    margin-left: 5%;
+    font-size: 25px;
+    border: none;
+    background-color: #080808;
+    color: #e50914;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-github{
+    height: 50px;
+}
+
+.message-scrapp{
+    display: flex;
+    justify-content: center;
+    color: #ff5400;
+}
+
 .game-card {
     margin: 16px;
     width: 255px;
