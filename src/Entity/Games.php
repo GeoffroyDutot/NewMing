@@ -34,7 +34,12 @@ class Games
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $url;
+    private $urlimage;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlgame;
 
     public function getId(): ?int
     {
@@ -77,14 +82,26 @@ class Games
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getUrlimage(): ?string
     {
-        return $this->url;
+        return $this->urlimage;
     }
 
-    public function setUrl(?string $url): self
+    public function setUrlimage(?string $urlimage): self
     {
-        $this->url = $url;
+        $this->urlimage = $urlimage;
+
+        return $this;
+    }
+
+    public function getUrlgame(): ?string
+    {
+        return $this->urlgame;
+    }
+
+    public function setUrlgame(?string $urlgame): self
+    {
+        $this->urlgame = $urlgame;
 
         return $this;
     }

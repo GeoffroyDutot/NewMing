@@ -3,19 +3,4 @@
 {% block title %}NewMing{% endblock %}
 
 {% block body %}
-    <div class="message-scrapp">Les données çi-dessous proviennent du site Instant Gaming</div>
-    <div class="gamecard-container">
-        {% for game in games %}
-            <div class="game-card">
-                <img class="game-img" src="{{  game.url }}" alt="{{ game.title }}"/>
-                <div class="container">
-                    <p class="game-price">{{ game.price }}</p>
-                    <div class="game-infos">
-                        <p class="game-release-date">{{ game.releasedate }}</p>
-                        <h3 class="game-title">{{ game.title|upper }}</h3>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 {% endblock %}
