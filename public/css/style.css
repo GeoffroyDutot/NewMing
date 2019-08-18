@@ -71,6 +71,10 @@ body {
     display: flex;
 }
 
+.game-url{
+    text-decoration: none;
+}
+
 .game-img{
     width: 100%;
 }

@@ -6,7 +6,8 @@
     <div class="message-scrapp">Les données ci-dessous proviennent du site Instant Gaming</div>
     <div class="gamecard-container">
         {% for game in games %}
-            <a target="_blank" href="{{ game.urlgame }}"><div class="game-card">
+            <a class="game-url" target="_blank" href="{{ game.urlgame }}">
+                <div class="game-card">
                     <img class="game-img" src="{{  game.urlimage }}" alt="{{ game.title }}"/>
                     <div class="container">
                         <p class="game-price">{{ game.price }}</p>
