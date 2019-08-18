@@ -27,7 +27,7 @@ class VideoGamesNewsController extends AbstractController
     }
 
     /**
-     * @Route("/jeux-video-nouveautés", name="video_games_news")
+     * @Route("/jeux-video-nouveautes", name="video_games_news")
      */
     public function index(GamesRepository $gamesRepo)
     {
@@ -42,34 +42,38 @@ class VideoGamesNewsController extends AbstractController
      */
     public function scrapping()
     {
-        //remove all the data in the games table
-        $connection = $this->em->getConnection();
-        $platform   = $connection->getDatabasePlatform();
-        $connection->executeUpdate($platform->getTruncateTableSQL('games', true));
+        try {
+            //remove all the data in the games table
+            $connection = $this->em->getConnection();
+            $platform   = $connection->getDatabasePlatform();
+            $connection->executeUpdate($platform->getTruncateTableSQL('games', true));
 
-        //scrape the data from IG
-        $client = \Symfony\Component\Panther\Client::createChromeClient();
-        $crawler = $client->request('GET', 'https://www.instant-gaming.com/fr/rechercher/?preorder=1&sort_by=avail_date_asc');
-        $fullPageHtml = $crawler->html();
-        $countitem = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div')->count();
-        for($i=1; $i<$countitem+1; $i++){
-            $releasedate = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > div.name')->text();
-            $title = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('alt');
-            $urlImage = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('src');
-            $urlImage = str_replace('157x218', '271x377', $urlImage);
-            $price = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > div > div.price')->text();
-            $urlGame =  $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a')->attr('href');
+            //scrape the data from IG
+            $client = \Symfony\Component\Panther\Client::createChromeClient();
+            $crawler = $client->request('GET', 'https://www.instant-gaming.com/fr/rechercher/?preorder=1&sort_by=avail_date_asc');
+            $fullPageHtml = $crawler->html();
+            $countitem = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div')->count();
+            for($i=1; $i<$countitem+1; $i++){
+                $releasedate = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > div.name')->text();
+                $title = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('alt');
+                $urlImage = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > img')->attr('src');
+                $urlImage = str_replace('157x218', '271x377', $urlImage);
+                $price = $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a > div > div.price')->text();
+                $urlGame =  $crawler->filter('#ig-panel-center > div.search-wrapper > div.search > div:nth-child('.$i.') > a')->attr('href');
 
-            $scrapping = new Games();
-            $scrapping->setTitle($title);
-            $scrapping->setPrice($price);
-            $scrapping->setReleasedate($releasedate);
-            $scrapping->setUrlimage($urlImage);
-            $scrapping->setUrlgame($urlGame);
-            $this->em->persist($scrapping);
-            $this->em->flush();
+                $scrapping = new Games();
+                $scrapping->setTitle($title);
+                $scrapping->setPrice($price);
+                $scrapping->setReleasedate($releasedate);
+                $scrapping->setUrlimage($urlImage);
+                $scrapping->setUrlgame($urlGame);
+                $this->em->persist($scrapping);
+                $this->em->flush();
+            }
+            $client->quit();
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
         }
-        $client->quit();
 
         return $this->redirectToRoute('video_games_news');
     }
