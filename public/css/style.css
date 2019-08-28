@@ -27,7 +27,7 @@ body {
     border: none;
     background-color: #ff5400;
     color:white;
-    width: 120px;
+    width: 140px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -40,11 +40,17 @@ body {
     border: none;
     background-color: #080808;
     color: #e50914;
-    width: 120px;
+    width: 140px;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.netflix-button:hover, .games-button:hover {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .logo-github{
@@ -124,7 +130,7 @@ body {
 
 .netflix-card {
     margin: 16px;
-    width: 300px;
+    width: 400px;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;

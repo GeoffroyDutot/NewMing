@@ -55,7 +55,6 @@ class NetflixNewsController extends AbstractController
             $client = \Symfony\Component\Panther\Client::createChromeClient();
             $crawler = $client->request('GET', 'https://fr.flixable.com/coming-soon/');
             $fullPageHtml = $crawler->html();
-            //$countitem = $crawler->filter('body > main > div > div')->count();
             $countrow = $crawler->filter('body > main > div > div')->count();
 
 
@@ -70,16 +69,12 @@ class NetflixNewsController extends AbstractController
 
                 if($class=="col-12 mb-2"){
                     $releasedate = $crawler->filter('body > main > div > div:nth-child('.$i.') > div > h2')->text();
-                    echo "date : ".$releasedate;
                 }
                 if ($class=="col-sm-6"){
                     $countrowimages = $crawler->filter('body > main > div > div:nth-child('.$i.') > div')->count();
                     for($j=1; $j<$countrowimages+1; $j++){
-
                         $title = $crawler->filter('body > main > div > div:nth-child('.$i.') > div:nth-child('.$j.') > div > picture > img')->attr('alt');
-                        echo "title : ".$title;
                         $urlImage = $crawler->filter('body > main > div > div:nth-child('.$i.') > div:nth-child('.$j.') > div > picture > img')->attr('src');
-                        echo "image : ".$urlImage;
 
                         $scrapping = new ContentNetflix();
                         $scrapping->setTitle($title);
@@ -91,8 +86,6 @@ class NetflixNewsController extends AbstractController
                 }
 
             }
-
-
 
             $client->quit();
         } catch (\Exception $e) {
