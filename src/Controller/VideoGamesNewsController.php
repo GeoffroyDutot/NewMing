@@ -38,7 +38,7 @@ class VideoGamesNewsController extends AbstractController
     }
 
     /**
-     * @Route("/scrapping", name="scrapping")
+     * @Route("/games-scrapping", name="games_scrapping")
      */
     public function scrapping()
     {

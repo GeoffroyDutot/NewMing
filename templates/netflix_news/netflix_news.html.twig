@@ -3,5 +3,19 @@
 {% block title %}Nouveautés Netflix{% endblock %}
 
 {% block body %}
-    <div class="message-scrapp">Les données ci-dessous proviennent du site</div>
+    <div class="message-scrapp">Les données ci-dessous proviennent du site Flixable</div>
+    <div class="gamecard-container">
+        {% for netflix in contentsnetflix %}
+                <div class="netflix-card">
+                    <img class="game-img" src="{{  netflix.urlimage }}" alt="{{ netflix.title }}"/>
+                    <div class="container">
+                        <div class="game-infos">
+                            <p class="game-release-date">{{ netflix.releasedate }}</p>
+                            <h3 class="game-title">{{ netflix.title|upper }}</h3>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
 {% endblock %}
+

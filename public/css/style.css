@@ -121,3 +121,17 @@ body {
     width: 100%;
     text-align: center;
 }
+
+.netflix-card {
+    margin: 16px;
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.netflix-card-container{
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+}
