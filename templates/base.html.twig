@@ -7,6 +7,10 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="css/style.css">
             <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+            <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+            <link rel="manifest" href="img/site.webmanifest">
         {% endblock %}
     </head>
     <body>
@@ -16,7 +20,7 @@
             <a href="{{ path('netflix_news') }}" class="netflix-button">Netflix</a>
         </div>
         <div class="logo-social">
-            <a href="https://github.com/GeoffroyDutot"><img class="logo-github" src="image/logo-github.png" alt="logo github"></a>
+            <a href="https://github.com/GeoffroyDutot"><img class="logo-github" src="img/logo-github.png" alt="logo github"></a>
         </div>
     </div>
         {% block body %}{% endblock %}
