@@ -13,12 +13,12 @@ body {
 
 .social-network{
     display:flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 1%;
+    padding: 0.8rem;
 }
 
 .nav{
-    margin-left: 45%;
     display: flex;
 }
 
@@ -53,8 +53,8 @@ body {
     transform: scale(1.1);
 }
 
-.logo-github{
-    height: 50px;
+.logo-github, .space{
+    width: 50px;
 }
 
 .message-scrapp{
